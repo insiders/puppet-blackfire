@@ -4,7 +4,8 @@ class blackfire (
   $server_token = $blackfire::params::server_token,
   $agent = $blackfire::params::agent,
   $php = $blackfire::params::php,
-  $manage_repo = $blackfire::params::manage_repo
+  $manage_repo = $blackfire::params::manage_repo,
+  $ini_path = $blackfire::params::ini_path
 ) inherits blackfire::params {
 
   validate_string($server_id)
@@ -15,6 +16,7 @@ class blackfire (
   validate_hash($agent)
   validate_hash($php)
   validate_bool($manage_repo)
+  validate_string($ini_path)
 
   anchor { '::blackfire::begin': } ->
   class { '::blackfire::repo': } ->
